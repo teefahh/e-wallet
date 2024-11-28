@@ -1,0 +1,40 @@
+<c-row ngPreserveWhitespaces>
+  <c-col xs="12">
+    <c-card class="mb-4">
+      <c-card-header class="d-flex justify-content-between align-items-center">
+        <strong>Transactions Table</strong> <small></small>
+      </c-card-header>
+      <c-card-body>
+        <p class="text-medium-emphasis small">
+          This table shows list of transactions completed in recent times.
+        </p>
+
+        <h3 class="text-center" *ngIf="transactionList.length === 0" >No transactions found</h3>
+        
+          <table cTable *ngIf="transactionList.length > 0">
+            <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Type</th>
+              <th scope="col">Sender</th>
+              <th scope="col">Receiver</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let transaction of transactionList; let i = index">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ transaction.transaction_type }}</td>
+              <td>{{ transaction.sender_name }}</td>
+              <td>{{ transaction.receiver_name }}</td>
+              <td>${{ transaction.amount }}</td>
+              <td>{{ transaction.created_at | date: 'medium' }}</td>
+            </tr>
+            </tbody>
+          </table>
+        
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
